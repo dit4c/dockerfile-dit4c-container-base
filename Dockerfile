@@ -1,7 +1,7 @@
 # DOCKER-VERSION 1.0
 
 # Base image for other DIT4C platform images
-FROM alpine:3.4
+FROM alpine:3.5
 MAINTAINER t.dettrick@uq.edu.au
 
 # Directories that don't need to be preserved in images
