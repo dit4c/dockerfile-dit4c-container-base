@@ -65,8 +65,7 @@ CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 RUN adduser -D -s /bin/bash -G wheel researcher && \
     truncate -s 0 /etc/sudoers && \
     echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
-    passwd -d -u researcher && \
-    sed -i -e '/stdout.*uname/s/^/#/' /etc/pam.d/login
+    passwd -d -u researcher
 
 RUN chown -R researcher /var/log/easydav /var/log/supervisor
 
