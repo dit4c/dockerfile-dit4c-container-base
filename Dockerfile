@@ -65,9 +65,13 @@ CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 RUN adduser -D -s /bin/bash -G wheel researcher && \
     truncate -s 0 /etc/sudoers && \
     echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
-    passwd -d -u researcher
+    passwd -d -u researcher && \
+    sed -i -e '/stdout.*uname/s/^/#/' /etc/pam.d/login
 
 RUN chown -R researcher /var/log/easydav /var/log/supervisor
 
 # Logs do not need to be preserved when exporting
 VOLUME ["/var/log"]
+
+# Change MOTD
+RUN sh -c '. /etc/os-release && echo "You are using $PRETTY_NAME | $HOME_URL" > /etc/motd'
