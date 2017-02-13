@@ -40,7 +40,7 @@ RUN apk add --update py-pip && pip install kid flup
 # Install EasyDAV
 COPY easydav_fix-archive-download.patch /tmp/
 RUN mkdir -p /opt && cd /opt && \
-  curl http://koti.kapsi.fi/jpa/webdav/easydav-0.4.tar.gz | tar zxvf - && \
+  curl -sL http://koti.kapsi.fi/jpa/webdav/easydav-0.4.tar.gz | tar zxvf - && \
   mv easydav-0.4 easydav && \
   cd easydav && \
   patch -p1 < /tmp/easydav_fix-archive-download.patch && \
